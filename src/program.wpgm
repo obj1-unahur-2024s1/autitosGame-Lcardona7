@@ -1,0 +1,37 @@
+import wollok.game.*
+import auto.*
+
+program miPrimerWollokGame {
+	
+	// Configuracion
+	game.width(14)
+	game.height(8)
+	game.boardGround("empedrado.jpg")
+	game.title("Estacionar")
+
+	// Visuales
+	game.addVisual(autoPrincipal)
+	game.addVisual(auto1)
+	game.addVisual(auto2)
+	game.addVisual(auto3)
+	game.addVisual(auto4)
+	game.addVisual(parking)
+	game.addVisual(pared1)
+	game.addVisual(pared2)
+	
+	// Teclado
+	keyboard.up().onPressDo { autoPrincipal.mover(autoPrincipal.position().up(1)) }
+	keyboard.down().onPressDo { autoPrincipal.mover(autoPrincipal.position().down(1)) }
+	keyboard.left().onPressDo {autoPrincipal.mover(autoPrincipal.position().left(1)) }
+	keyboard.right().onPressDo {autoPrincipal.mover(autoPrincipal.position().right(1)) }
+	
+	//eventos
+	game.onCollideDo(autoPrincipal, {parking => parking.colision() })
+	game.onCollideDo(autoPrincipal, {obj => autoPrincipal.colision(obj) })
+	
+	
+	// que arranque el juego!
+	game.start()
+	
+	
+}
